@@ -1,4 +1,4 @@
-# StockAnalysis.com Scraper
+# StockAnalysis.com Scraper — v1.1
 
 **Personal Use Only**
 Built and maintained by Nick Barran — [nbarran@uw.edu](mailto:nbarran@uw.edu)
@@ -50,6 +50,12 @@ stockscraper/
         └── MSFT_combined.xlsx
 ```
 
+### Performance
+- All statements are fetched simultaneously using a thread pool (8 workers)
+- Persistent HTTP sessions reuse TCP connections, eliminating SSL handshake overhead per request
+- No artificial delay between requests
+- Single ticker with all statements on Both periods completes in approximately 3-5 seconds
+
 ### Error Handling
 - Invalid or unrecognized tickers are detected immediately and skipped
 - Any partially created folder for a failed ticker is automatically deleted
@@ -81,12 +87,12 @@ pip install requests pandas beautifulsoup4 lxml openpyxl
 
 **From source:**
 ```
-python stockanalysis_gui.py
+python stockanalysis_gui_v1_1.py
 ```
 
 **As a compiled executable (Windows):**
 ```
-PyInstaller --onefile --windowed stockanalysis_gui.py
+& "C:\Users\ndbar\AppData\Local\Programs\Python\Python314\python.exe" -m PyInstaller --onefile --windowed "C:\Users\ndbar\PyCharmMiscProject\stockanalysis_gui_v1_1.py"
 ```
 The `.exe` will be output to the `dist/` folder.
 
